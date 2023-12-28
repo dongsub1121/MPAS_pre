@@ -1,0 +1,70 @@
+package com.nicepay.mpas.network
+
+import android.util.Log
+
+
+class ProtocolBodyAliPay {
+
+    var price: Int = 0
+
+    var barcodeType = ProtocolEntity(1,"Q")
+    var barcode = ProtocolEntity(24,"")
+    var amount = ProtocolEntity(12,0)
+    var tax = ProtocolEntity(12,0)
+    private var tip = ProtocolEntity(12,0)
+    var catType = ProtocolEntity(1,"P")
+    var currencyCode = ProtocolEntity(3,"KRW")
+    var noTax = ProtocolEntity(12,0)
+    var authorizationDate = ProtocolEntity(6,"")
+    var authorizationNumber = ProtocolEntity(12,"")
+    var cancelType = ProtocolEntity(1,"")
+    private var cancelReason = ProtocolEntity(2,"")
+    var goodsItem = ProtocolEntity(256,"")
+    var reserved = ProtocolEntity(512,"")
+
+
+    fun putPrice(value: Int) {
+        //TODO(reason: implement settingFragment)
+
+        amount.data =  (price / 1.1).toInt()
+        tax.data = price - amount.data as Int
+
+        Log.e("putPrice","amount: ${amount.data} , tax: ${tax.data}")
+
+    }
+
+    fun setBarcodeType(value: String){
+        barcodeType.data = value
+    }
+
+    fun setBarcode(value: String) {
+        barcode.data = value
+    }
+
+
+
+    fun get(): ByteArray {
+
+
+
+        return barcodeType.byte+
+                barcode.byte+
+                amount.byte+
+                tax.byte+
+                tip.byte+
+                catType.byte+
+                currencyCode.byte+
+                noTax.byte+
+                authorizationDate.byte+
+                authorizationNumber.byte+
+                cancelType.byte+
+                cancelReason.byte+
+                goodsItem.byte+
+                reserved.byte+0x0d
+
+
+
+    }
+
+
+}

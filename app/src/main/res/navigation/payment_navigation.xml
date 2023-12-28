@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/payment_navigation"
+    app:startDestination="@id/payMethod">
+
+    <fragment
+        android:id="@+id/payMethod"
+        android:name="com.nicepay.mpas.ui.payment.PaymentMethodFragment"
+        android:label="payMethod"
+        tools:layout="@layout/fragment_pay_method" >
+        <action
+            android:id="@+id/to_payAmountFragment"
+            app:destination="@id/payAmountFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/payAmountFragment"
+        android:name="com.nicepay.mpas.ui.payment.PayAmountFragment"
+        android:label="fragment_pay_amount"
+        tools:layout="@layout/fragment_pay_amount" >
+        <action
+            android:id="@+id/action_payAmountFragment_to_payBarcodeReaderFragment"
+            app:destination="@id/payBarcodeReaderFragment"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/payBarcodeReaderFragment"
+        android:name="com.nicepay.mpas.ui.payment.PayBarcodeReaderFragment"
+        android:label="fragment_pay_barcode_reader"
+        tools:layout="@layout/fragment_pay_barcode_reader" >
+        <action
+            android:id="@+id/action_payBarcodeReaderFragment_to_payRoadingFragment"
+            app:destination="@id/payLoadingFragment"
+            app:popUpTo="@id/payAmountFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/payLoadingFragment"
+        android:name="com.nicepay.mpas.ui.payment.PayLoadingFragment"
+        android:label="fragment_pay_roading"
+        tools:layout="@layout/fragment_pay_loading" >
+        <action
+            android:id="@+id/action_payRoadingFragment_to_payResultFragment"
+            app:destination="@id/payResultFragment"
+            app:popUpTo="@id/payBarcodeReaderFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/payResultFragment"
+        android:name="com.nicepay.mpas.ui.payment.PayResultFragment"
+        android:label="fragment_pay_result"
+        app:popUpTo="@id/payLoadingFragment"
+        app:popUpToInclusive="true"
+        tools:layout="@layout/fragment_pay_result"
+        />
+
+</navigation>
