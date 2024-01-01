@@ -16,7 +16,7 @@ data class PaymentData(
     var resCode: String = "",
     var msg: String ="",
     var status: Pay.Status? = null,
-    var wallet: Pay.Wallet? = null){
+    var service: Pay.Service? = null){
 
     override fun toString(): String {
         val sb = StringBuilder()

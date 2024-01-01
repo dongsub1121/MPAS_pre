@@ -39,8 +39,8 @@ data class ProtocolHeader(
         return buffer.rewind().array() as ByteArray
     }
 
-    fun setJobCode(wallet: Pay.Wallet, status: Pay.Status) {
-        Pay.getJobCode(wallet, status).also { this.jobCode.data = it }
+    fun setJobCode(service: Pay.Service, status: Pay.Status) {
+        Pay.getJobCode(service, status).also { this.jobCode.data = it }
     }
 
     private fun setMerchant() {

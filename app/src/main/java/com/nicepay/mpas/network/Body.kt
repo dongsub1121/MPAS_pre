@@ -19,9 +19,9 @@ abstract class Body {
     abstract fun toByte(): ByteArray
 
     companion object Factory {
-        fun instance (wallet: Pay.Wallet): Body {
-            return when ( wallet ) {
-                Pay.Wallet.PAYPRO -> PAYPRO()
+        fun instance (service: Pay.Service): Body {
+            return when ( service ) {
+                Pay.Service.PAYPRO -> PAYPRO()
                 else -> throw IllegalArgumentException("Unknown Wallet")
             }
 

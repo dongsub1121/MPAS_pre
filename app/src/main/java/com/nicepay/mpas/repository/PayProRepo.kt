@@ -46,8 +46,8 @@ class PayProRepo(order: Order) {
     val inquiry: Single<ByteArray> = Single.defer {
         Single.fromCallable {
 
-            tr.setStatus(Pay.Status.INQUIRY)
-            tr.data().let { van.request(it) }
+            transaction.setStatus(Pay.Status.INQUIRY)
+            transaction.data().let { van.request(it) }
 
         }
     }
@@ -62,12 +62,12 @@ class PayProRepo(order: Order) {
             .subscribe {
                 // 특정 함수를 호출합니다.
                 Single.defer {
-                    Single.fromCallable { tr.data().let { van.request(it)}.let { tr.paymentData(it) } }
+                    Single.fromCallable { transaction.data().let { van.request(it)}.let { transaction.paymentData(it) } }
             }.filter {
                     it.resCode.equals("UPAY")
-                }.map { tr.setStatus(Pay.Status.INQUIRY)}
+                }.map { transaction.setStatus(Pay.Status.INQUIRY)}
                     .subscribe{
-                        van.request(tr.data())
+                        van.request(transaction.data())
                     }
     }
 

@@ -12,10 +12,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.nicepay.mpas.R
 import com.nicepay.mpas.databinding.FragmentPayMethodBinding
-import com.nicepay.mpas.util.Pay
-import com.nicepay.mpas.util.Pay.Status
 import com.nicepay.mpas.util.Pay.Status.*
-import com.nicepay.mpas.util.Pay.Wallet.*
+import com.nicepay.mpas.util.Pay.Service.*
 
 class PaymentMethodFragment : Fragment() {
 

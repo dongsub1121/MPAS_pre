@@ -17,21 +17,21 @@ data class Protocol (
     private var etx: Byte = 0x03
         ) {
 
-    fun init(wallet: Pay.Wallet, status: Pay.Status ) {
+    fun init(service: Pay.Service, status: Pay.Status ) {
 
         ProtocolHeader().also {
             header = it
-            header?.setJobCode(wallet, status)
+            header?.setJobCode(service, status)
         }
-        setBody(wallet).also { body = it }
+        setBody(service).also { body = it }
     }
 
     fun authorization(order: Order) {
 
     }
 
-    fun setJobCode(wallet: Pay.Wallet, status: Pay.Status) {
-        header?.setJobCode(wallet, status)
+    fun setJobCode(service: Pay.Service, status: Pay.Status) {
+        header?.setJobCode(service, status)
     }
 
     fun setPrice(price: Int) {
@@ -93,11 +93,11 @@ data class Protocol (
         totalLen.data = defaultLen
     }
 
-    private fun setBody(pay: Pay.Wallet): ProtocolBody {
+    private fun setBody(pay: Pay.Service): ProtocolBody {
         //TODO : edit other wallet
         return when (pay) {
-            Pay.Wallet.PAYPRO -> PayProBody()
-            Pay.Wallet.ALI -> PayProBody()
+            Pay.Service.PAYPRO -> PayProBody()
+            Pay.Service.ALI -> PayProBody()
 
             else -> throw IllegalArgumentException("Unknown Wallet")
         }

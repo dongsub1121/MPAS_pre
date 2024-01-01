@@ -26,13 +26,13 @@ class Order {
             return field
         }
 
-    fun setInitialize(wallet: Pay.Wallet, status: Pay.Status) {
-        paymentData.wallet = wallet
+    fun setInitialize(service: Pay.Service, status: Pay.Status) {
+        paymentData.service = service
         paymentData.status = status
     }
 
-    fun setWallet(wallet: Pay.Wallet) {
-        paymentData.wallet = wallet
+    fun setWallet(service: Pay.Service) {
+        paymentData.service = service
     }
 
     fun setStatus(status: Pay.Status) {

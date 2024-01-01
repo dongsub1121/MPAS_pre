@@ -2,7 +2,7 @@ package com.nicepay.mpas.util
 
 object Pay {
 
-    enum class Wallet{
+    enum class Service{
         ALI,
         WECHAT,
         LIQUID,
@@ -16,6 +16,7 @@ object Pay {
         AUTH,
         CANCEL,
         REFUND,
+        PARTIAL_REFUND,
         INQUIRY
     }
 
@@ -31,17 +32,18 @@ object Pay {
     private const val JOB_PAYPRO_INQUIRY: String = "8068"
     private const val JOB_PAYPRO_CANCEL: String = "8069"
 
-    fun getJobCode(pays: Wallet, status: Status): String {
-        return when (pays) {
-            Wallet.PAYPRO -> {
+    fun getJobCode(service: Service, status: Status): String {
+        return when (service) {
+            Service.PAYPRO -> {
                 when (status) {
                     Status.AUTH -> JOB_PAYPRO_AUTH
                     Status.CANCEL -> JOB_PAYPRO_CANCEL
                     Status.REFUND -> JOB_PAYPRO_REFUND
                     Status.INQUIRY -> JOB_PAYPRO_INQUIRY
+                    Status.PARTIAL_REFUND -> JOB_PAYPRO_REFUND
                 }
             }
-            else -> throw IllegalArgumentException("${pays.name} is not defined")
+            else -> throw IllegalArgumentException("${service.name} is not defined")
         }
     }
 

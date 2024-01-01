@@ -50,13 +50,13 @@ class PaymentViewModel : ViewModel(){
 
     }*/
 
-    fun setInitOrder( wallet: Pay.Wallet, status: Pay.Status) {
+    fun setInitOrder(service: Pay.Service, status: Pay.Status) {
         order?.let {
-            it.setInitialize(wallet, status)
+            it.setInitialize(service, status)
             _order.value= true
         } ?: kotlin.run {
             order = Order()
-            order!!.setInitialize(wallet, status)
+            order!!.setInitialize(service, status)
             _order.value= true
         }
     }
@@ -72,13 +72,13 @@ class PaymentViewModel : ViewModel(){
         }
     }
 
-    fun setOrderWallet(wallet: Pay.Wallet) {
+    fun setOrderWallet(service: Pay.Service) {
         order?.let {
-            it.setWallet(wallet)
+            it.setWallet(service)
             _order.value = true
         } ?: kotlin.run {
             order = Order()
-            order!!.setWallet(wallet)
+            order!!.setWallet(service)
             order!!.setStatus(Pay.Status.AUTH)
             _order.value = true
         }
