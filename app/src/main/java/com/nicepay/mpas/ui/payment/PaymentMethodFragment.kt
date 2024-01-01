@@ -31,7 +31,7 @@ class PaymentMethodFragment : Fragment() {
 
         binding?.card1?.setOnClickListener {
             Log.e("Method", "setTransaction")
-            viewModel.setTransaction(PAYPRO, AUTH)
+            //viewModel.setTransaction(PAYPRO, AUTH)
             findNavController().navigate(R.id.to_payAmountFragment, args)
         }
 

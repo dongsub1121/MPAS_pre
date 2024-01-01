@@ -3,8 +3,6 @@ package com.nicepay.mpas.repository
 import android.annotation.SuppressLint
 import android.os.Build
 import androidx.annotation.RequiresApi
-import com.nicepay.mpas.model.Order
-import com.nicepay.mpas.model.PaymentData
 import com.nicepay.mpas.network.Transaction
 import com.nicepay.mpas.network.VanClient
 import com.nicepay.mpas.util.Pay
@@ -13,14 +11,13 @@ import io.reactivex.rxjava3.core.Single
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.TimeoutCancellationException
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withTimeout
 import java.util.concurrent.TimeUnit
 
 //class PayProRepo(transaction: Transaction) {
 @RequiresApi(Build.VERSION_CODES.O)
-class PayProRepo(order: Order) {
+class PayProRepo(order: Transaction) {
 
     private val van: VanClient = VanClient()
     private var transaction = Transaction()

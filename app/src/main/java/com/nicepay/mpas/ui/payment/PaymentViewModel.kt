@@ -127,20 +127,9 @@ class PaymentViewModel : ViewModel(){
     fun authorization() {
         Log.e("viewmodel","authorization")
         val repository = transaction?.let { PayProRepo(it) }
-        //repository?.authorization()
-        repository?.authorization?.subscribe(
 
-                {
-                    it.let { res ->
-                        Log.e("viewmodel",res.toString(Charsets.UTF_8))
-                        val pd = transaction?.paymentData(res)
-                        pd?.let { it1 -> Log.e("viewmodel", it1.issuer)}
-                    }
-                },
-            {
-            it.printStackTrace()
-            }
-        )
+
+
     }
 
     override fun onCleared() {

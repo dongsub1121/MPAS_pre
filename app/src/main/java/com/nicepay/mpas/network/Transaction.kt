@@ -19,7 +19,7 @@ data class Transaction (private var stx: Byte = 0x02,
                         private var cancelTransaction: ProtocolEntity = ProtocolEntity(1, 0),
                         private var filler: ProtocolEntity = ProtocolEntity(1, ' '),
                         private var header: ProtocolHeader = ProtocolHeader(),
-                        private var body: ProtocolBody?,
+                        private var body: ProtocolBody? = null,
                         private var etx: Byte = 0x03) {
 
     private lateinit var service: Service
